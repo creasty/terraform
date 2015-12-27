@@ -35,7 +35,7 @@ resource "dnsimple_record" "main-gmail-mx-1" {
     name     = ""
     value    = "aspmx.l.google.com"
     type     = "MX"
-    priority = 1
+    # priority = 1
     ttl      = 300
 }
 
@@ -44,7 +44,7 @@ resource "dnsimple_record" "main-gmail-mx-2" {
     name     = ""
     value    = "alt1.aspmx.l.google.com"
     type     = "MX"
-    priority = 5
+    # priority = 5
     ttl      = 300
 }
 
@@ -53,7 +53,7 @@ resource "dnsimple_record" "main-gmail-mx-3" {
     name     = ""
     value    = "alt2.aspmx.l.google.com"
     type     = "MX"
-    priority = 5
+    # priority = 5
     ttl      = 300
 }
 
@@ -62,7 +62,7 @@ resource "dnsimple_record" "main-gmail-mx-4" {
     name     = ""
     value    = "aspmx2.googlemail.com"
     type     = "MX"
-    priority = 10
+    # priority = 10
     ttl      = 300
 }
 
@@ -71,6 +71,6 @@ resource "dnsimple_record" "main-gmail-mx-5" {
     name     = ""
     value    = "aspmx3.googlemail.com"
     type     = "MX"
-    priority = 10
+    # priority = 10
     ttl      = 300
 }
