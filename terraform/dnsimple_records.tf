@@ -1,7 +1,7 @@
-resource "dnsimple_record" "main-cname" {
+resource "dnsimple_record" "main-alias" {
     domain = "creasty.com"
     name   = ""
-    type   = "CNAME"
+    type   = "ALIAS"
     value  = "creasty.com.s3-website-ap-northeast-1.amazonaws.com"
     ttl    = 3600
 }
