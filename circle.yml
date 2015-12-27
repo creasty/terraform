@@ -30,7 +30,7 @@ test:
   override:
     - |
       set -e
-      terraform plan terraform | ./tcript/mask-credentials
+      terraform plan -var-file=terraform.tfvars terraform | ./script/mask-credentials
   post:
     - terraform remote push
 
@@ -42,5 +42,5 @@ deployment:
         set -e
         terraform remote config -backend=S3 -backend-config="bucket=$S3_BUCKET_NAME" -backend-config="key=$S3_OBJECT_KEY"
         terraform remote pull
-        terraform apply terraform | ./script/mask-credentials
+        terraform apply -var-file=terraform.tfvars terraform | ./script/mask-credentials
         terraform remote push
