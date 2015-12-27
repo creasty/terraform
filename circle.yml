@@ -47,6 +47,7 @@ deployment:
     branch: master
     commands:
       - |
+        set -e
         make pull
         make apply
         make push
