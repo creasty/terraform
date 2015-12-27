@@ -1,0 +1,55 @@
+machine:
+  environment:
+    PATH:              $HOME/.terraform:$PATH
+    TERRAFORM_VERSION: 0.6.8
+    S3_BUCKET_NAME:    creasty-infra
+    S3_OBJECT_KEY:     terraform.tfstate
+
+dependencies:
+  cache_directories:
+    - ~/.terraform
+  pre:
+    - |
+      set -e
+
+      TERRAFORM_PATH="$HOME/.terraform"
+      VERSION_FILE="$TERRAFORM_PATH/.version"
+
+      if [ -d "$TERRAFORM_PATH" ]; then
+        touch "$VERSION_FILE"
+
+        if [ "$(cat "$VERSION_FILE")" = "$TERRAFORM_VERSION" ]; then
+          exit 0
+        else
+          rm -rf "$TERRAFORM_PATH"
+        fi
+      fi
+
+      mkdir -p "$TERRAFORM_PATH"
+      cd "$TERRAFORM_PATH"
+      curl -LO "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
+      unzip "terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
+      rm "terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
+      echo "$TERRAFORM_VERSION" > "$VERSION_FILE"
+
+test:
+  pre:
+    - ./script/create-varfile
+    - |
+      set -e
+      terraform remote config -backend=S3 -backend-config="bucket=$S3_BUCKET_NAME" -backend-config="key=$S3_OBJECT_KEY"
+      terraform remote pull
+  override:
+    - terraform plan terraform | ./script/mask-credentials && exit $PIPESTATUS
+  post:
+    - terraform remote push
+
+deployment:
+  production:
+    branch: master
+    commands:
+      - |
+        terraform remote config -backend=S3 -backend-config="bucket=$S3_BUCKET_NAME" -backend-config="key=$S3_OBJECT_KEY"
+        terraform remote pull
+        terraform apply terraform | ./script/mask-credentials && exit $PIPESTATUS
+        terraform remote push
