@@ -34,13 +34,10 @@ dependencies:
 
 test:
   pre:
-    - ./script/create-varfile
-    - |
-      set -e
-      terraform remote config -backend=S3 -backend-config="bucket=$S3_BUCKET_NAME" -backend-config="key=$S3_OBJECT_KEY"
-      terraform remote pull
+    - make prepare
+    - make pull
   override:
-    - terraform plan terraform | ./script/mask-credentials && exit $PIPESTATUS
+    - make plan
   post:
     - terraform remote push
 
@@ -48,8 +45,8 @@ deployment:
   production:
     branch: master
     commands:
+      - make prepare
       - |
-        terraform remote config -backend=S3 -backend-config="bucket=$S3_BUCKET_NAME" -backend-config="key=$S3_OBJECT_KEY"
-        terraform remote pull
-        terraform apply terraform | ./script/mask-credentials && exit $PIPESTATUS
-        terraform remote push
+        make pull
+        make apply
+        make push
