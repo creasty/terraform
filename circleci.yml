@@ -1,0 +1,40 @@
+machine:
+  environment:
+    PATH:              $HOME/.terraform:$PATH
+    TERRAFORM_VERSION: 0.5.1
+    S3_BUCKET_NAME:    creasty-infra
+    S3_OBJECT_KEY:     terraform.tfstate
+
+dependencies:
+  cache_directories:
+    - ~/.terraform
+  pre:
+    - |
+      if ! [ -d "$HOME/.terraform" ]; then
+        mkdir -p $HOME/.terraform
+        cd $HOME/.terraform
+        curl -LO https://dl.bintray.com/mitchellh/terraform/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+        unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+        rm terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+      fi
+
+test:
+  pre:
+    - ./script/create-varfile
+    - |
+      terraform remote config -backend=S3 -backend-config="bucket=$S3_BUCKET_NAME" -backend-config="key=$S3_OBJECT_KEY"
+      terraform remote pull
+  override:
+    - terraform plan | ./script/mask-credentials
+  post:
+    - terraform remote push
+
+deployment:
+  production:
+    branch: master
+    commands:
+      - |
+        terraform remote config -backend=S3 -backend-config="bucket=$S3_BUCKET_NAME" -backend-config="key=$S3_OBJECT_KEY"
+        terraform remote pull
+        terraform apply | ./script/mask-credentials
+        terraform remote push

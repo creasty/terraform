@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+FILE="$(dirname $0)/../terraform.tfvar"
+
+cat <<-EOS > "$FILE"
+"aws_access_key_id"="$AWS_ACCESS_KEY_ID"
+"aws_secret_access_key"="$AWS_SECRET_ACCESS_KEY"
+"dnsimple_email"="$DNSIMPLE_EMAIL"
+"dnsimple_token"="$DNSIMPLE_TOKEN"
+EOS
