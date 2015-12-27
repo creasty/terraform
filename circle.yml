@@ -31,21 +31,21 @@ dependencies:
       unzip "terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
       rm "terraform_${TERRAFORM_VERSION}_linux_amd64.zip"
       echo "$TERRAFORM_VERSION" > "$VERSION_FILE"
+  post:
+    - make prepare
 
 test:
   pre:
-    - make prepare
     - make pull
   override:
     - make plan
   post:
-    - terraform remote push
+    - make push
 
 deployment:
   production:
     branch: master
     commands:
-      - make prepare
       - |
         make pull
         make apply
