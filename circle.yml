@@ -1,7 +1,7 @@
 machine:
   environment:
     PATH:              $HOME/.terraform:$PATH
-    TERRAFORM_VERSION: 0.5.1
+    TERRAFORM_VERSION: 0.6.8
     S3_BUCKET_NAME:    creasty-infra
     S3_OBJECT_KEY:     terraform.tfstate
 
@@ -12,13 +12,25 @@ dependencies:
     - |
       set -e
 
-      if ! [ -d "$HOME/.terraform" ]; then
-        mkdir -p $HOME/.terraform
-        cd $HOME/.terraform
-        curl -LO https://dl.bintray.com/mitchellh/terraform/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
-        unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip
-        rm terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+      TERRAFORM_PATH="$HOME/.terraform"
+      VERSION_FILE="$TERRAFORM_PATH/.version"
+
+      [ -d $TERRAFORM_PATH ] || mkdir -p $TERRAFORM_PATH
+
+      touch "$VERSION_FILE"
+
+      if [ "$(cat "$VERSION_FILE")" = "$TERRAFORM_VERSION" ]; then
+        exit 0
+      else
+        rm -rf $TERRAFORM_PATH
+        mkdir -p $TERRAFORM_PATH
+        echo -n "$TERRAFORM_VERSION" > "$VERSION_FILE"
       fi
+
+      cd $TERRAFORM_PATH
+      curl -LO https://dl.bintray.com/mitchellh/terraform/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+      unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+      rm terraform_${TERRAFORM_VERSION}_linux_amd64.zip
 
 test:
   pre:
