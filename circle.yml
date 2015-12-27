@@ -28,9 +28,7 @@ test:
       terraform remote config -backend=S3 -backend-config="bucket=$S3_BUCKET_NAME" -backend-config="key=$S3_OBJECT_KEY"
       terraform remote pull
   override:
-    - |
-      set -e
-      terraform plan -var-file=terraform.tfvars terraform | ./script/mask-credentials
+    - terraform plan -var-file=terraform.tfvars terraform | ./script/mask-credentials && exit $PIPESTATUS
   post:
     - terraform remote push
 
@@ -39,8 +37,7 @@ deployment:
     branch: master
     commands:
       - |
-        set -e
         terraform remote config -backend=S3 -backend-config="bucket=$S3_BUCKET_NAME" -backend-config="key=$S3_OBJECT_KEY"
         terraform remote pull
-        terraform apply -var-file=terraform.tfvars terraform | ./script/mask-credentials
+        terraform apply -var-file=terraform.tfvars terraform | ./script/mask-credentials && exit $PIPESTATUS
         terraform remote push
