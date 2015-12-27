@@ -10,6 +10,8 @@ dependencies:
     - ~/.terraform
   pre:
     - |
+      set -e
+
       if ! [ -d "$HOME/.terraform" ]; then
         mkdir -p $HOME/.terraform
         cd $HOME/.terraform
@@ -22,10 +24,13 @@ test:
   pre:
     - ./script/create-varfile
     - |
+      set -e
       terraform remote config -backend=S3 -backend-config="bucket=$S3_BUCKET_NAME" -backend-config="key=$S3_OBJECT_KEY"
       terraform remote pull
   override:
-    - terraform plan terraform | ./script/mask-credentials
+    - |
+      set -e
+      terraform plan terraform | ./tcript/mask-credentials
   post:
     - terraform remote push
 
@@ -34,6 +39,7 @@ deployment:
     branch: master
     commands:
       - |
+        set -e
         terraform remote config -backend=S3 -backend-config="bucket=$S3_BUCKET_NAME" -backend-config="key=$S3_OBJECT_KEY"
         terraform remote pull
         terraform apply terraform | ./script/mask-credentials
