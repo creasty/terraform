@@ -13,8 +13,8 @@ push:
 
 .PHONY: plan
 plan:
-	@terraform plan terraform | ./script/mask-credentials && exit "$${PIPESTATUS}"
+	@terraform plan terraform | ./script/mask-credentials && exit "$${PIPESTATUS[0]}"
 
 .PHONY: apply
 apply:
-	@terraform apply terraform | ./script/mask-credentials && exit "$${PIPESTATUS}"
+	@terraform apply terraform | ./script/mask-credentials && exit "$${PIPESTATUS[0]}"
