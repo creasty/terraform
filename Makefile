@@ -1,3 +1,5 @@
+SHELL=/bin/bash -o pipefail
+
 .PHONY: prepare
 prepare:
 	@./script/create-varfile
@@ -13,8 +15,8 @@ push:
 
 .PHONY: plan
 plan:
-	@terraform plan terraform | ./script/mask-credentials && exit "$${PIPESTATUS[0]}"
+	@terraform plan terraform | ./script/mask-credentials
 
 .PHONY: apply
 apply:
-	@terraform apply terraform | ./script/mask-credentials && exit "$${PIPESTATUS[0]}"
+	@terraform apply terraform | ./script/mask-credentials
