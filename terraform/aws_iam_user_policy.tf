@@ -11,14 +11,14 @@ resource "aws_iam_user_policy" "AmazonS3FullAccess-delta-test" {
         "s3:ListBucket"
       ],
       "Effect": "Allow",
-      "Resource": "arn:aws:s3:::delta-test-wantedly"
+      "Resource": "arn:aws:s3:::delta-test-1"
     },
     {
       "Action": [
         "s3:*"
       ],
       "Effect": "Allow",
-      "Resource": "arn:aws:s3:::delta-test-wantedly/*"
+      "Resource": "arn:aws:s3:::delta-test-1/*"
     }
   ]
 }
