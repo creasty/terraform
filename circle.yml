@@ -28,7 +28,7 @@ dependencies:
       fi
 
       cd $TERRAFORM_PATH
-      curl -LO https://dl.bintray.com/mitchellh/terraform/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+      curl -LO https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
       unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip
       rm terraform_${TERRAFORM_VERSION}_linux_amd64.zip
 
