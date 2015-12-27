@@ -1,6 +1,6 @@
 resource "aws_iam_user_policy" "AmazonS3FullAccess-delta-test" {
     name   = "AmazonS3FullAccess-delta-test"
-    user   = "${aws_iam_user.delta_test.name}"
+    user   = "${aws_iam_user.delta-test.name}"
     policy = <<POLICY
 {
   "Version": "2012-10-17",
