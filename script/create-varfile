@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-FILE="$(dirname $0)/../terraform.tfvar"
+FILE="$(dirname $0)/../terraform.tfvars"
 
 cat <<-EOS > "$FILE"
 "aws_access_key_id"="$AWS_ACCESS_KEY_ID"
