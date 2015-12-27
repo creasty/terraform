@@ -25,7 +25,7 @@ test:
       terraform remote config -backend=S3 -backend-config="bucket=$S3_BUCKET_NAME" -backend-config="key=$S3_OBJECT_KEY"
       terraform remote pull
   override:
-    - terraform plan | ./script/mask-credentials
+    - terraform plan terraform | ./script/mask-credentials
   post:
     - terraform remote push
 
@@ -36,5 +36,5 @@ deployment:
       - |
         terraform remote config -backend=S3 -backend-config="bucket=$S3_BUCKET_NAME" -backend-config="key=$S3_OBJECT_KEY"
         terraform remote pull
-        terraform apply | ./script/mask-credentials
+        terraform apply terraform | ./script/mask-credentials
         terraform remote push
