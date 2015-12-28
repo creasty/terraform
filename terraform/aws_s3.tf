@@ -17,6 +17,10 @@ resource "aws_s3_bucket" "creasty-com" {
   ]
 }
 POLICY
+    website {
+        index_document = "index.html"
+        error_document = "index.html"
+    }
 }
 
 resource "aws_s3_bucket" "delta-test-1" {
