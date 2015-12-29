@@ -2,7 +2,7 @@ resource "dnsimple_record" "main-alias" {
     domain = "creasty.com"
     name   = ""
     type   = "ALIAS"
-    value  = "crst-site.herokussl.com"
+    value  = "crst-site.herokuapp.com"
     ttl    = 3600
 }
 
