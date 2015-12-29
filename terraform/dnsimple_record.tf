@@ -2,7 +2,7 @@ resource "dnsimple_record" "main-alias" {
     domain = "creasty.com"
     name   = ""
     type   = "ALIAS"
-    value  = "creasty.com.s3-website-ap-northeast-1.amazonaws.com"
+    value  = "crst-site.herokussl.com"
     ttl    = 3600
 }
 
