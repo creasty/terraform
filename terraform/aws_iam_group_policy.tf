@@ -1,6 +1,6 @@
 resource "aws_iam_group_policy" "AdministratorAccess-admin" {
     name   = "AdministratorAccess-admin"
-    group  = "admin"
+    group  = "${aws_iam_group.admin.name}"
     policy = <<POLICY
 {
   "Version": "2012-10-17",
@@ -17,7 +17,7 @@ POLICY
 
 resource "aws_iam_group_policy" "AmazonRDSFullAccess-dev" {
     name   = "AmazonRDSFullAccess-dev"
-    group  = "dev"
+    group  = "${aws_iam_group.dev.name}"
     policy = <<POLICY
 {
   "Version": "2012-10-17",
@@ -47,7 +47,7 @@ POLICY
 
 resource "aws_iam_group_policy" "AmazonEC2FullAccess-dev" {
     name   = "AmazonEC2FullAccess-dev"
-    group  = "dev"
+    group  = "${aws_iam_group.dev.name}"
     policy = <<POLICY
 {
   "Version": "2012-10-17",
@@ -79,7 +79,7 @@ POLICY
 
 resource "aws_iam_group_policy" "IAMFullAccess-dev" {
     name   = "IAMFullAccess-dev"
-    group  = "dev"
+    group  = "${aws_iam_group.dev.name}"
     policy = <<POLICY
 {
   "Version": "2012-10-17",
@@ -96,7 +96,7 @@ POLICY
 
 resource "aws_iam_group_policy" "AmazonElastiCacheFullAccess-dev" {
     name   = "AmazonElastiCacheFullAccess-dev"
-    group  = "dev"
+    group  = "${aws_iam_group.dev.name}"
     policy = <<POLICY
 {
   "Version": "2012-10-17",
@@ -113,7 +113,7 @@ POLICY
 
 resource "aws_iam_group_policy" "AmazonS3FullAccess-dev" {
     name   = "AmazonS3FullAccess-dev"
-    group  = "dev"
+    group  = "${aws_iam_group.dev.name}"
     policy = <<POLICY
 {
   "Version": "2012-10-17",
@@ -130,7 +130,7 @@ POLICY
 
 resource "aws_iam_group_policy" "CloudFrontFullAccess-dev" {
     name   = "CloudFrontFullAccess-dev"
-    group  = "dev"
+    group  = "${aws_iam_group.dev.name}"
     policy = <<POLICY
 {
   "Version": "2012-10-17",
@@ -157,7 +157,7 @@ POLICY
 
 resource "aws_iam_group_policy" "AmazonVPCFullAccess-dev" {
     name   = "AmazonVPCFullAccess-dev"
-    group  = "dev"
+    group  = "${aws_iam_group.dev.name}"
     policy = <<POLICY
 {
   "Version": "2012-10-17",
