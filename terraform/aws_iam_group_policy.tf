@@ -1,6 +1,23 @@
-resource "aws_iam_group_policy" "AmazonRDSFullAccess-admin" {
-    name   = "AmazonRDSFullAccess-admin"
+resource "aws_iam_group_policy" "AdministratorAccess-admin" {
+    name   = "AdministratorAccess-admin"
     group  = "admin"
+    policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "*",
+      "Resource": "*"
+    }
+  ]
+}
+POLICY
+}
+
+resource "aws_iam_group_policy" "AmazonRDSFullAccess-dev" {
+    name   = "AmazonRDSFullAccess-dev"
+    group  = "dev"
     policy = <<POLICY
 {
   "Version": "2012-10-17",
@@ -28,9 +45,9 @@ resource "aws_iam_group_policy" "AmazonRDSFullAccess-admin" {
 POLICY
 }
 
-resource "aws_iam_group_policy" "AmazonEC2FullAccess-admin" {
-    name   = "AmazonEC2FullAccess-admin"
-    group  = "admin"
+resource "aws_iam_group_policy" "AmazonEC2FullAccess-dev" {
+    name   = "AmazonEC2FullAccess-dev"
+    group  = "dev"
     policy = <<POLICY
 {
   "Version": "2012-10-17",
@@ -60,9 +77,9 @@ resource "aws_iam_group_policy" "AmazonEC2FullAccess-admin" {
 POLICY
 }
 
-resource "aws_iam_group_policy" "IAMFullAccess-admin" {
-    name   = "IAMFullAccess-admin"
-    group  = "admin"
+resource "aws_iam_group_policy" "IAMFullAccess-dev" {
+    name   = "IAMFullAccess-dev"
+    group  = "dev"
     policy = <<POLICY
 {
   "Version": "2012-10-17",
@@ -77,9 +94,9 @@ resource "aws_iam_group_policy" "IAMFullAccess-admin" {
 POLICY
 }
 
-resource "aws_iam_group_policy" "AmazonElastiCacheFullAccess-admin" {
-    name   = "AmazonElastiCacheFullAccess-admin"
-    group  = "admin"
+resource "aws_iam_group_policy" "AmazonElastiCacheFullAccess-dev" {
+    name   = "AmazonElastiCacheFullAccess-dev"
+    group  = "dev"
     policy = <<POLICY
 {
   "Version": "2012-10-17",
@@ -94,9 +111,9 @@ resource "aws_iam_group_policy" "AmazonElastiCacheFullAccess-admin" {
 POLICY
 }
 
-resource "aws_iam_group_policy" "AmazonS3FullAccess-admin" {
-    name   = "AmazonS3FullAccess-admin"
-    group  = "admin"
+resource "aws_iam_group_policy" "AmazonS3FullAccess-dev" {
+    name   = "AmazonS3FullAccess-dev"
+    group  = "dev"
     policy = <<POLICY
 {
   "Version": "2012-10-17",
@@ -111,9 +128,9 @@ resource "aws_iam_group_policy" "AmazonS3FullAccess-admin" {
 POLICY
 }
 
-resource "aws_iam_group_policy" "CloudFrontFullAccess-admin" {
-    name   = "CloudFrontFullAccess-admin"
-    group  = "admin"
+resource "aws_iam_group_policy" "CloudFrontFullAccess-dev" {
+    name   = "CloudFrontFullAccess-dev"
+    group  = "dev"
     policy = <<POLICY
 {
   "Version": "2012-10-17",
@@ -138,9 +155,9 @@ resource "aws_iam_group_policy" "CloudFrontFullAccess-admin" {
 POLICY
 }
 
-resource "aws_iam_group_policy" "AmazonVPCFullAccess-admin" {
-    name   = "AmazonVPCFullAccess-admin"
-    group  = "admin"
+resource "aws_iam_group_policy" "AmazonVPCFullAccess-dev" {
+    name   = "AmazonVPCFullAccess-dev"
+    group  = "dev"
     policy = <<POLICY
 {
   "Version": "2012-10-17",
