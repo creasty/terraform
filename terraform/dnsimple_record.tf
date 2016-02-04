@@ -18,7 +18,7 @@ resource "dnsimple_record" "main-dotfiles-url" {
     domain = "creasty.com"
     name   = "dotfiles"
     type   = "URL"
-    value  = "https://github.com/creasty/dotfiles"
+    value  = "https://raw.githubusercontent.com/creasty/dotfiles/master"
     ttl    = 3600
 }
 
