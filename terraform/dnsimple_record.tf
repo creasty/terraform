@@ -74,3 +74,11 @@ resource "dnsimple_record" "main-gmail-mx-5" {
     # priority = 10
     ttl      = 300
 }
+
+resource "dnsimple_record" "main-from8-url" {
+    domain = "from8.help"
+    name   = ""
+    type   = "URL"
+    value  = "https://p.wantedly.com"
+    ttl    = 300
+}
