@@ -83,10 +83,10 @@ resource "dnsimple_record" "main-from8-url" {
     ttl    = 300
 }
 
-resource "dnsimple_record" "panada-cname" {
+resource "dnsimple_record" "panada-alias" {
     domain = "panda-meets-panda.com"
     name   = ""
     value  = "sync-msg-api-prod-nginx-260385198.ap-northeast-1.elb.amazonaws.com"
-    type   = "CNAME"
+    type   = "ALIAS"
     ttl    = "3600"
 }
