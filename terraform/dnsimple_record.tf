@@ -86,7 +86,7 @@ resource "dnsimple_record" "main-from8-url" {
 resource "dnsimple_record" "panada-alias" {
     domain = "panda-meets-panda.com"
     name   = ""
-    value  = "sync-msg-api-prod-nginx-260385198.ap-northeast-1.elb.amazonaws.com"
+    value  = "panda-meets-pand-to-sync-2006115251.ap-northeast-1.elb.amazonaws.com"
     type   = "ALIAS"
     ttl    = "3600"
 }
