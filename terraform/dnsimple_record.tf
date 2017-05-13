@@ -1,8 +1,8 @@
-resource "dnsimple_record" "main-alias" {
+resource "dnsimple_record" "main-a" {
     domain = "creasty.com"
     name   = ""
-    type   = "ALIAS"
-    value  = "crst-site.herokuapp.com"
+    type   = "A"
+    value  = "104.199.134.179"
     ttl    = 3600
 }
 
