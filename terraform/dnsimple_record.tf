@@ -1,3 +1,5 @@
+#  Main
+#-----------------------------------------------
 resource "dnsimple_record" "main-a" {
     domain = "creasty.com"
     name   = ""
@@ -75,6 +77,9 @@ resource "dnsimple_record" "main-gmail-mx-5" {
     ttl      = 300
 }
 
+
+#  From8
+#-----------------------------------------------
 resource "dnsimple_record" "main-from8-url" {
     domain = "from8.help"
     name   = ""
@@ -83,10 +88,24 @@ resource "dnsimple_record" "main-from8-url" {
     ttl    = 300
 }
 
+
+#  Panda
+#-----------------------------------------------
 resource "dnsimple_record" "panada-alias" {
     domain = "panda-meets-panda.com"
     name   = ""
     value  = "panda-meets-pand-to-sync-2006115251.ap-northeast-1.elb.amazonaws.com"
     type   = "ALIAS"
     ttl    = "3600"
+}
+
+
+#  Stay and Coffee
+#-----------------------------------------------
+resource "dnsimple_record" "stay-and-coffee-a" {
+    domain = "creasty.com"
+    name   = "stay-and-coffee"
+    type   = "A"
+    value  = "35.185.164.127"
+    ttl    = 3600
 }
