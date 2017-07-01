@@ -117,6 +117,6 @@ resource "dnsimple_record" "torinos-api-a" {
     domain = "torinos.io"
     name   = "api"
     type   = "A"
-    value  = "104.199.172.214"
+    value  = "35.190.3.6"
     ttl    = 3600
 }
