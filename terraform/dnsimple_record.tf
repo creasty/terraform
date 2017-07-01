@@ -109,3 +109,14 @@ resource "dnsimple_record" "stay-and-coffee-a" {
     value  = "35.185.164.127"
     ttl    = 3600
 }
+
+
+#  Torinos
+#-----------------------------------------------
+resource "dnsimple_record" "torinos-api-a" {
+    domain = "torinos.io"
+    name   = "api"
+    type   = "A"
+    value  = "104.199.172.214"
+    ttl    = 3600
+}
