@@ -4,7 +4,7 @@ resource "dnsimple_record" "main-a" {
     domain = "creasty.com"
     name   = ""
     type   = "A"
-    value  = "104.199.134.179"
+    value  = "107.178.242.4"
     ttl    = 3600
 }
 
@@ -12,7 +12,7 @@ resource "dnsimple_record" "main-www-url" {
     domain = "creasty.com"
     name   = "www"
     type   = "URL"
-    value  = "http://creasty.com"
+    value  = "https://creasty.com"
     ttl    = 3600
 }
 
