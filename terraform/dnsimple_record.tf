@@ -3,8 +3,8 @@
 resource "dnsimple_record" "main-a" {
     domain = "creasty.com"
     name   = ""
-    type   = "A"
-    value  = "107.178.242.4"
+    type   = "ALIAS"
+    value  = "dry-jackfruit-uzc5x4ndepd38x7ix1j1q0ye.herokudns.com"
     ttl    = 3600
 }
 
@@ -75,56 +75,4 @@ resource "dnsimple_record" "main-gmail-mx-5" {
     type     = "MX"
     # priority = 10
     ttl      = 300
-}
-
-
-#  From8
-#-----------------------------------------------
-resource "dnsimple_record" "main-from8-url" {
-    domain = "from8.help"
-    name   = ""
-    type   = "URL"
-    value  = "https://p.wantedly.com"
-    ttl    = 300
-}
-
-
-#  Panda
-#-----------------------------------------------
-resource "dnsimple_record" "panada-alias" {
-    domain = "panda-meets-panda.com"
-    name   = ""
-    value  = "panda-meets-pand-to-sync-2006115251.ap-northeast-1.elb.amazonaws.com"
-    type   = "ALIAS"
-    ttl    = "3600"
-}
-
-
-#  Stay and Coffee
-#-----------------------------------------------
-resource "dnsimple_record" "stay-and-coffee-a" {
-    domain = "creasty.com"
-    name   = "stay-and-coffee"
-    type   = "A"
-    value  = "35.185.164.127"
-    ttl    = 3600
-}
-
-
-#  Torinos
-#-----------------------------------------------
-resource "dnsimple_record" "torinos-a" {
-    domain = "torinos.io"
-    name   = ""
-    type   = "A"
-    value  = "130.211.11.2"
-    ttl    = 3600
-}
-
-resource "dnsimple_record" "torinos-api-a" {
-    domain = "torinos.io"
-    name   = "api"
-    type   = "A"
-    value  = "35.190.6.129"
-    ttl    = 3600
 }
