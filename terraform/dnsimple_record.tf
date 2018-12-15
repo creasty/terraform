@@ -3,8 +3,8 @@
 resource "dnsimple_record" "main-a" {
     domain = "creasty.com"
     name   = ""
-    type   = "A"
-    value  = "107.178.242.4"
+    type   = "ALIAS"
+    value  = "dry-jackfruit-uzc5x4ndepd38x7ix1j1q0ye.herokudns.com"
     ttl    = 3600
 }
 
